@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+  background: #F6F8FA;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+  color: #000000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 15px;
+}
+
+@layer components {
+  .nav-item {
+    @apply flex justify-start items-center flex-row gap-2 py-3 pr-3 rounded-lg hover:bg-[rgba(127,68,142,0.05)];
+  }
+  .dash-badge {
+    @apply flex justify-center items-center flex-row gap-2.5 py-0.5 px-2 border-solid border rounded-[17px]
+  }
+  .image-badge{
+    @apply border-solid border-[#EDEDED] border-[0.5px] w-[27px] h-[27px] rounded-[20px]
+  }
+}
