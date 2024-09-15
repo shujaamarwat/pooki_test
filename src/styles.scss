@@ -22,7 +22,7 @@ button:hover {
 
 @layer components {
   .nav-item {
-    @apply flex justify-center items-center flex-row gap-2 py-3 pr-3 rounded-lg hover:bg-[rgba(127,68,142,0.05)];
+    @apply flex justify-start items-center flex-row gap-2 py-3 pr-3 rounded-lg hover:bg-[rgba(127,68,142,0.05)];
   }
   .dash-badge {
     @apply flex justify-center items-center flex-row gap-2.5 py-0.5 px-2 border-solid border rounded-[17px]

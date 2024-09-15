@@ -1,0 +1,66 @@
+{
+  "userName": "Muhammad Hamza",
+  "totalEmployees": 12,
+  "activeEmployees": 10,
+  "inactiveEmployees": 2,
+  "membershipType": "Standard",
+  "totalCost": 35.88,
+  "loggedEmployees": 8,
+  "mostTimeLogged": {
+    "name": "John Doe",
+    "hours": 5
+  },
+  "leastTimeLogged": {
+    "name": "Jane Doe",
+    "hours": 2
+  },
+  "employees": [{
+      "name": "John Doe",
+      "avatar": "https://placehold.co/27x27"
+    },
+    {
+      "name": "Jane Doe",
+      "avatar": "https://placehold.co/27x27"
+    }
+  ],
+  "onLeave": [{
+      "name": "John Doe",
+      "avatar": "https://placehold.co/27x27",
+      "leaveType": " Sick"
+    },
+    {
+      "name": "Jane Doe",
+      "avatar": "https://placehold.co/27x27",
+      "leaveType": " Sick"
+    }
+  ],
+  "weeklyTimeLogs": [{
+      "dayOfWeek": "Mon",
+      "hoursWorked": 10
+    },
+    {
+      "dayOfWeek": "Tue",
+      "hoursWorked": 5
+    },
+    {
+      "dayOfWeek": "Wed",
+      "hoursWorked": 8
+    },
+    {
+      "dayOfWeek": "Thu",
+      "hoursWorked": 8
+    },
+    {
+      "dayOfWeek": "Fri",
+      "hoursWorked": 9
+    },
+    {
+      "dayOfWeek": "Sat",
+      "hoursWorked": 2
+    },
+    {
+      "dayOfWeek": "Sun",
+      "hoursWorked": 2
+    }
+  ]
+}
