@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SubmissionsComponent } from './components/submissions/submissions.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     DashboardComponent,
     HeaderComponent,
     SidebarComponent,
+    SubmissionsComponent,
   ],
   imports: [
     BrowserModule,

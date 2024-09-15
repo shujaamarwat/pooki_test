@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'pooki_test';
 
-  isSidebarOpen = false;
+  isSidebarOpen = true;
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;

@@ -1,28 +1,51 @@
 <aside [ngClass]="{ hidden: !isSidebarOpen }" id="default-sidebar"
   class="w-[214px] py-[32px] h-full shadow-lg transition-transform transform -translate-x-full lg:translate-x-0">
-  <nav class="h-full flex flex-col p-2">
+  <nav class="h-full p-2">
     <ul class="flex flex-col gap-1">
-      <li class="relative">
-        <a routerLink="/dashboard" routerLinkActive="active" class="nav-item hover:text-primary hover:font-medium"
-          [ngClass]="{'bg-[rgba(127,68,142,0.05)]': isActive}">
-          <div [ngClass]="{
-          'bg-primary rounded-[3px] w-[4px] h-[24px] absolute left-0': isActive
-        }"></div>
-          <img src="assets/dashboard.svg" alt="icon" />
-
-          <div [ngClass]="{'text-primary font-medium': isActive}" class="text-[#101828] text-sm leading-5">
-            Dashboard
+      <li *ngFor="let item of menuItems" class="relative"
+        (mouseover)="onHover(item)"
+        (mouseleave)="onLeave(item)">
+        
+        <!-- Parent Item without Children -->
+        <a *ngIf="!item.children"
+           [routerLink]="item.route"
+           class="nav-item pl-5 hover:text-primary hover:font-medium"
+           [ngClass]="{'bg-[rgba(127,68,142,0.05)]': item.isActive}">
+          <div [ngClass]="{'bg-primary rounded-[3px] w-[4px] h-[24px] absolute left-0': item.isActive}"></div>
+          <img [src]="item.icon" alt="icon" />
+          <div [ngClass]="{'text-primary font-medium': item.isActive}" class="text-[#101828] text-sm leading-5">
+            {{ item.label }}
           </div>
         </a>
-      </li>
-      <li>
-        <a routerLink="/timesheets" class="nav-item">
-          <img src="assets/timesheets.svg" alt="icon" />
+        
+        <!-- Parent Item with Children -->
+        <div *ngIf="item.children" class="relative">
+          <a (mouseover)="onHover(item)"
+             (mouseleave)="onLeave(item)"
+             class="nav-item hover:text-primary">
+             <span *ngIf="item.children" class="ml-auto">
+              <img src="assets/chevron_down.svg" alt="icon" />
+            </span>
+            <img [src]="item.icon" alt="icon" />
+            <div class="text-[#101828] text-sm leading-5">
+              {{ item.label }}
+            </div>
+          </a>
 
-          <span class="text-[#101828] text-sm  leading-5">
-            Timesheets
-          </span>
-        </a>
+          <!-- Submenu Items -->
+          <ul *ngIf="isHovered(item) || anyChildActive(item)" class="pl-4 flex flex-col">
+            <li *ngFor="let subItem of item.children" class="relative">
+              <a [routerLink]="subItem.route"
+                 class="nav-item pl-5 hover:text-primary hover:font-medium"
+                 [ngClass]="{'bg-[rgba(127,68,142,0.05)]': subItem.isActive}">
+                <div [ngClass]="{'bg-primary rounded-[3px] w-[4px] h-[24px] absolute left-0': subItem.isActive}"></div>
+                <span [ngClass]="{'text-primary font-medium': subItem.isActive}" class="text-[#101828] text-sm leading-5">
+                  {{ subItem.label }}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
     </ul>
   </nav>
