@@ -1,0 +1,29 @@
+<aside [ngClass]="{ hidden: !isSidebarOpen }" id="default-sidebar"
+  class="w-[214px] py-[32px] h-full shadow-lg transition-transform transform -translate-x-full lg:translate-x-0">
+  <nav class="h-full flex flex-col p-2">
+    <ul class="flex flex-col gap-1">
+      <li class="relative">
+        <a routerLink="/dashboard" routerLinkActive="active" class="nav-item hover:text-primary hover:font-medium"
+          [ngClass]="{'bg-[rgba(127,68,142,0.05)]': isActive}">
+          <div [ngClass]="{
+          'bg-primary rounded-[3px] w-[4px] h-[24px] absolute left-0': isActive
+        }"></div>
+          <img src="assets/dashboard.svg" alt="icon" />
+
+          <div [ngClass]="{'text-primary font-medium': isActive}" class="text-[#101828] text-sm leading-5">
+            Dashboard
+          </div>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/timesheets" class="nav-item">
+          <img src="assets/timesheets.svg" alt="icon" />
+
+          <span class="text-[#101828] text-sm  leading-5">
+            Timesheets
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>

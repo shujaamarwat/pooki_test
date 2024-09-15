@@ -1,0 +1,20 @@
+.header-grid {
+  grid-area: header;
+}
+.sidebar-grid {
+  grid-area: sidebar;
+}
+.main-grid {
+  grid-area: main;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px;
+  gap: 30px;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header header"
+    "sidebar menu menu menu"
+    "sidebar menu menu menu";
+}

@@ -1,0 +1,163 @@
+<div class="p-8">
+  <!-- Title -->
+  <div class="text-3xl flex gap-2 pb-8">
+    Welcome,
+    <div class="font-semibold">{{dashboardData.userName}}</div>
+  </div>
+  <!-- Info -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+
+    <!-- Total Employees -->
+    <div class="flex justify-start items-start flex-col p-8 bg-white rounded-2xl col-span-1">
+      <div class="font-semibold">
+        Total Employees
+      </div>
+      <div class="text-[58px] font-semibold">
+        {{ dashboardData.totalEmployees }}
+      </div>
+
+      <div class="flex space-x-2">
+        <button class="dash-badge active-badge bg-[#F5FEF8] border-[#34A153]">
+          <div class="text-[#34A153] text-[11px] font-medium leading-[15px]">
+            Active: {{ dashboardData.activeEmployees }}
+          </div>
+        </button>
+        <button class="dash-badge inactive-badge bg-[#FEFEF5] border-[#D99453]">
+          <div class="text-[#FF9446] text-[11px] font-medium leading-[15px]">
+            Inactive: {{ dashboardData.inactiveEmployees }}
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Membership -->
+    <div class="flex justify-between flex-col bg-primary p-[20px] rounded-2xl relative col-start-2 col-end-4">
+      <div class="font-semibold z-50">
+        <div class="text-white">Membership Type: </div>
+        <div class="text-[#FC5290]">{{dashboardData.membershipType}}</div>
+      </div>
+
+      <div class="flex justify-between items-end z-50">
+        <div class="flex flex-col">
+          <div class="text-white text-sm font-semibold">Total Cost:</div>
+          <div class="text-[#CCB4D2] text-xs font-medium">12 x $2.99 =</div>
+          <div class="text-white text-2xl font-semibold">${{ dashboardData.totalCost }}</div>
+        </div>
+
+        <button class="flex justify-center items-center px-[20px] bg-white h-[35px] rounded pay-now">
+          <div class="text-primary text-xs font-semibold">Pay Now</div>
+        </button>
+      </div>
+      <div class="absolute top-0 right-0">
+        <img src="assets/graphic_cost.svg" alt="icon" />
+      </div>
+    </div>
+
+    <!-- Highlights -->
+    <div class="flex justify-between flex-col bg-white p-[20px] rounded-2xl col-start-4 col-end-6">
+      <div class="font-semibold">Today's Highlights:</div>
+      <!-- First Row -->
+      <div class="flex items-center gap-2">
+        <div class="flex -space-x-4 rtl:space-x-reverse">
+          <img class="image-badge border-white" src="https://placehold.co/27x27" />
+          <img class="image-badge border-white" src="https://placehold.co/27x27" />
+          <img class="image-badge border-white" src="https://placehold.co/27x27" />
+        </div>
+        <div class="text-[10px] flex gap-0.5">
+          <div class="text-primary font-medium">{{ dashboardData.loggedEmployees }} Employees</div>
+          <div class="font-medium">have logged today</div>
+        </div>
+      </div>
+
+      <!-- Second Row -->
+
+      <div class="flex justify-start flex-row gap-1.5 items-center">
+        <div class="text-xs font-semibold">
+          Most Time Logged:
+        </div>
+        <img class="image-badge" src="https://placehold.co/27x27" />
+        <div class="text-xs flex gap-1"><b>{{ dashboardData.mostTimeLogged?.name || "NA" }}</b> currently at
+          <div class="text-primary flex gap-1 font-semibold">{{ dashboardData.mostTimeLogged?.hours || "0" }}
+            hours</div>
+        </div>
+      </div>
+      <!-- Third Row -->
+      <div class="flex justify-start flex-row gap-1.5 items-center">
+        <div class="text-xs font-semibold">
+          Least Time Logged:
+        </div>
+        <img class="image-badge" src="https://placehold.co/27x27" />
+        <div class="text-xs flex gap-1"><b>{{ dashboardData.leastTimeLogged?.name || "NA" }}</b> currently
+          at
+          <div class="text-primary font-semibold">
+            {{ dashboardData.leastTimeLogged?.hours || "0" }}
+            hours
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Graph -->
+    <div class="flex flex-col p-8 bg-white rounded-2xl col-span-3">
+      <div class="flex justify-between items-center">
+        <div class="font-semibold">
+          Logged Time Graph
+        </div>
+        <div class="flex gap-4">
+          <div class="dash-badge pr-2.5 pl-0.5 bg-[#F8F8F8] border-black">
+            <img class="image-badge" src="https://placehold.co/27x27" />
+            <div class="text-[#333333] text-[10px] font-semibold">{{ dashboardData.mostTimeLogged?.name || "NA" }}
+            </div>
+            <button><img src="assets/delete.svg" alt="icon" /></button>
+          </div>
+          <div class="dash-badge justify-start border-black">
+            <img src="assets/search.svg" alt="icon" />
+            <input type="text" id="employees" class="text-[#868686] text-[10px] font-medium h-full"
+              placeholder="Search Employees" required />
+
+          </div>
+          <button class="flex justify-start items-center flex-row gap-1.5">
+            <div class="text-xs font-medium">
+              7 Days
+            </div>
+            <img src="assets/chevron_down.svg" alt="icon" />
+          </button>
+        </div>
+      </div>
+      <div>
+        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+          [stroke]="chartOptions.stroke" [markers]="chartOptions.markers" [grid]="chartOptions.grid"
+          [yaxis]="chartOptions.yaxis" [tooltip]="chartOptions.tooltip">
+        </apx-chart>
+      </div>
+    </div>
+
+    <!-- On Leave Today -->
+    <div
+      class="col-span-2 flex justify-start flex-col bg-[#FDF4FF] border-solid border-primary border-2 rounded-2xl p-[20px] relative gap-8">
+      <div class="font-semibold">On Leave Today</div>
+      <div class="flex justify-between items-center z-50">
+        <div class="flex gap-3">
+          <img class="image-badge" src="https://placehold.co/27x27" />
+          <div class="flex flex-col">
+            <div class="text-[#333333] text-xs font-semibold">
+              {{ dashboardData.mostTimeLogged?.name || "NA" }}
+            </div>
+            <div class="text-[10px] flex">
+              Leave Type -
+              <div class="font-light">🤒</div>
+              <div class="font-medium">Sick</div>
+            </div>
+          </div>
+        </div>
+        <button>
+          <img src="assets/chevron_right.svg" alt="icon" />
+        </button>
+      </div>
+
+      <div class="absolute bottom-0 right-0">
+        <img src="assets/graphic_leave.svg" alt="icon" />
+      </div>
+    </div>
+  </div>
+</div>
