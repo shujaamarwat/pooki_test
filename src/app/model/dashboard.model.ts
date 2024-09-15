@@ -1,16 +1,17 @@
 import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexDataLabels,
-  ApexStroke,
-  ApexMarkers,
-  ApexGrid,
-  ApexYAxis,
-  ApexTooltip
+  ApexAxisChartSeries as ApexChartSeries,
+  ApexChart as ApexChartOptions,
+  ApexXAxis as ApexXAxisOptions,
+  ApexDataLabels as ApexDataLabelsOptions,
+  ApexStroke as ApexStrokeOptions,
+  ApexMarkers as ApexMarkersOptions,
+  ApexGrid as ApexGridOptions,
+  ApexYAxis as ApexYAxisOptions,
+  ApexTooltip as ApexTooltipOptions
 } from 'ng-apexcharts';
 
-export interface Dashboard {
+// Dashboard Data Interface
+export interface DashboardData {
   userName?: string;
   totalEmployees: number;
   activeEmployees: number;
@@ -23,8 +24,8 @@ export interface Dashboard {
     hours?: number;
   };
   leastTimeLogged?: {
-    name: string;
-    hours: number;
+    name?: string;
+    hours?: number;
   };
   employees: {
     name: string;
@@ -35,13 +36,14 @@ export interface Dashboard {
     avatar: string;
     leaveType: string;
   }[];
-  timeLogData: {
-    day: string;
-    hours: number;
+  weeklyTimeLogs: {
+    dayOfWeek: string;
+    hoursWorked: number;
   }[];
 }
 
-export const dashboardDummy: Dashboard = {
+// Sample Dashboard Data
+export const sampleDashboardData: DashboardData = {
   userName: 'Muhammad Hamza',
   totalEmployees: 12,
   activeEmployees: 10,
@@ -52,71 +54,79 @@ export const dashboardDummy: Dashboard = {
   mostTimeLogged: { name: 'John Doe', hours: 5 },
   leastTimeLogged: { name: 'Jane Doe', hours: 2 },
   employees: [
-    { name: 'John Doe', avatar: 'path/to/avatar1.jpg' },
-    { name: 'Jane Doe', avatar: 'path/to/avatar2.jpg' },
+    { name: 'John Doe', avatar: 'https://placehold.co/27x27' },
+    { name: 'Jane Doe', avatar: 'https://placehold.co/27x27' },
   ],
   onLeave: [
-    { name: 'John Doe', avatar: 'path/to/avatar1.jpg', leaveType: 'Sick' },
+    { name: 'John Doe', avatar: 'https://placehold.co/27x27', leaveType: '🤒 Sick' },
+    { name: 'Jane Doe', avatar: 'https://placehold.co/27x27', leaveType: '🤒 Sick' },
   ],
-  timeLogData: [
-    { day: 'Mon', hours: 10 },
-    { day: 'Tue', hours: 5 },
-    { day: 'Wed', hours: 8 },
-    { day: 'Thu', hours: 8 },
-    { day: 'Fri', hours: 9 },
-    { day: 'Sat', hours: 2 },
-    { day: 'Sun', hours: 2 },
+  weeklyTimeLogs: [
+    { dayOfWeek: 'Mon', hoursWorked: 10 },
+    { dayOfWeek: 'Tue', hoursWorked: 5 },
+    { dayOfWeek: 'Wed', hoursWorked: 8 },
+    { dayOfWeek: 'Thu', hoursWorked: 8 },
+    { dayOfWeek: 'Fri', hoursWorked: 9 },
+    { dayOfWeek: 'Sat', hoursWorked: 2 },
+    { dayOfWeek: 'Sun', hoursWorked: 2 },
   ],
 };
 
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  stroke: ApexStroke;
-  markers: ApexMarkers;
-  grid: ApexGrid;
-  yaxis: ApexYAxis;
-  tooltip: ApexTooltip;
+// Chart Options Type
+export type ChartConfiguration = {
+  series: ApexChartSeries;
+  chart: ApexChartOptions;
+  xaxis: ApexXAxisOptions;
+  stroke: ApexStrokeOptions;
+  markers: ApexMarkersOptions;
+  grid: ApexGridOptions;
+  yaxis: ApexYAxisOptions;
+  tooltip: ApexTooltipOptions;
 };
 
-export const defaultChart = {
+// Default Chart Configuration
+export const defaultChartConfig: ChartConfiguration = {
+  series: [
+    {
+      name: 'Logged Hours',
+      data: [10, 6, 8, 8, 8, 10, 2],
+    },
+  ],
   chart: {
-    type: "line",
+    type: 'line',
     height: 350,
     toolbar: {
-      show: false  // Disable toolbar
+      show: false
     }
   },
   stroke: {
-    curve: "smooth",
+    curve: 'straight',
     width: 3,
-    colors: ['#8B3FD6']  // Line color
+    colors: ['#8B3FD6']
   },
   markers: {
     size: 6,
-    colors: ['#8B3FD6'],  // Marker color
+    colors: ['#8B3FD6'],
     strokeColors: '#fff',
     strokeWidth: 2,
     hover: {
-      size: 8  // Hover size for markers
+      size: 8
     }
   },
   grid: {
-    borderColor: "#e0e0e0",
+    borderColor: '#e0e0e0',
     row: {
-      colors: ["#f3f3f3", "transparent"], // Alternating row background
       opacity: 0.5
     }
   },
   xaxis: {
-    categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],  // Weekdays
+    categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
       style: {
-        colors: "#101828",
-        fontSize: "12px",
+        colors: '#101828',
+        fontSize: '12px',
         fontWeight: 500,
-        fontFamily: "Montserrat"
+        fontFamily: 'Montserrat'
       }
     }
   },
@@ -126,21 +136,17 @@ export const defaultChart = {
     tickAmount: 6,
     labels: {
       style: {
-        colors: "#101828",
-        fontSize: "12px",
+        colors: '#101828',
+        fontSize: '12px',
         fontWeight: 500,
-        fontFamily: "Montserrat"
+        fontFamily: 'Montserrat'
       },
-      formatter: (val: any) => {
-        return val + "hr";  // Add 'hr' suffix to Y-axis values
-      }
+      formatter: (value: number) => `${value}hr` // Add 'hr' suffix to Y-axis values
     }
   },
   tooltip: {
     y: {
-      formatter: (val: any) => {
-        return val + " hours";
-      }
+      formatter: (value: number) => `${value} hours`
     }
   }
 };

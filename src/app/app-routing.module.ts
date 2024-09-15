@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'submissions', component: SubmissionsComponent },
   { path: 'timesheets', redirectTo: '/timesheets', pathMatch: 'full' },
-  { path: 'clients', redirectTo: '/client', pathMatch: 'full' },
+  { path: 'clients', redirectTo: '/clients', pathMatch: 'full' },
   { path: 'settings', redirectTo: '/settings', pathMatch: 'full' },
 ];
 
