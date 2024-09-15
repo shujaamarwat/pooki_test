@@ -1,0 +1,40 @@
+<header
+  class="py-1 px-4 flex items-center justify-between relative z-40 bg-white shadow-[_0px_8px_20px_0px_rgba(0,0,0,0.06)]"
+>
+  <div class="flex gap-[20px]">
+    <button
+      (click)="onToggleSidebar()"
+      type="button"
+      class="items-center p-2 text-sm text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-gray-200"
+    >
+      <span class="sr-only">Open sidebar</span>
+
+      <img src="assets/hamburger.svg" class="image-badge" alt="icon" />
+
+    </button>
+
+    <a routerLink="/dashboard" class="flex nav-item">
+      <img
+        src="assets/logo.png"
+        class="w-[26px] h-[32px]"
+        alt="icon"
+      />
+      <span class="text-lg">
+        Pookiy-HR
+        <span class="text-primary font-medium pl-1">Bot</span>
+      </span>
+    </a>
+  </div>
+  <div class="  text-lg  font-medium">
+    {{ currentTime | date : "HH:mm" }}
+  </div>
+  <div class="flex items-center gap-3">
+    <img class="image-badge h-[43px] w-[43px]" src="https://placehold.co/43x43" />
+    <span class="  text-lg  font-medium">
+      Muhammad Hamza
+    </span>
+    <button (click)="onLogout()">
+      <img src="assets/logout.svg" class="image-badge" alt="icon" />
+    </button>
+  </div>
+</header>
