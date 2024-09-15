@@ -1,27 +1,42 @@
 import { Component } from '@angular/core';
-import { SubmissionData, sampleSubmissions } from '../../model/submissions.model';
+import { SubmissionData } from '../../model/submissions.model';
+import { PopulateService } from '../../services/populate.service';
 
 @Component({
   selector: 'app-submissions',
   templateUrl: './submissions.component.html',
   styleUrls: ['./submissions.component.scss']
 })
-export class SubmissionsComponent {
 
+export class SubmissionsComponent {  
   searchTerm: string = '';
   activeFilters = { month: '', type: 'All' as 'Positive' | 'Negative' | 'All' };
   isFilterDropdownOpen: boolean = false;
-  public submissions: SubmissionData[] = sampleSubmissions;
+  public submissionData!: SubmissionData[];
+
 
   filterSubmissions(): SubmissionData[] {
     const { searchTerm, activeFilters } = this;
-    return this.submissions.filter(({ clientName, responseType }) => {
+    return this.submissionData.filter(({ clientName, responseType }) => {
       const nameMatch = clientName.toLowerCase().includes(searchTerm.toLowerCase());
       const monthMatch = !activeFilters.month || activeFilters.month === 'March';
       const typeMatch = activeFilters.type === 'All' || responseType === activeFilters.type;
       return nameMatch && monthMatch && typeMatch;
     });
   }
+
+  constructor(private populateService: PopulateService) {}
+
+  ngOnInit(): void {
+    this.loadSubmissionData();
+  }
+
+  loadSubmissionData(): void {
+    this.populateService.getSubmissionsData().subscribe((data) => {
+      this.submissionData = data;
+    });
+  }
+
 
   toggleFilterDropdown(): void {
     this.isFilterDropdownOpen = !this.isFilterDropdownOpen;

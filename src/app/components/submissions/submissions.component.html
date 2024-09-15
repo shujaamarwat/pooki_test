@@ -1,4 +1,4 @@
-<div class="p-8 flex flex-col gap-4">
+<div *ngIf="submissionData" class="p-8 flex flex-col gap-4">
   <h2 class="text-[#101828] text-lg font-semibold leading-7">Form Submissions</h2>
 
   <div class="flex flex-col md:flex-row items-center justify-between">
@@ -111,4 +111,11 @@
       </tr>
     </tbody>
   </table>
+</div>
+<div *ngIf="!submissionData" class="p-8">
+  <div class="w-full gap-x-2 flex justify-center items-center">
+    <div class="w-5 bg-[#d991c2] animate-pulse h-5 rounded-full animate-bounce"></div>
+    <div class="w-5 animate-pulse h-5 bg-[#9869b8] rounded-full animate-bounce"></div>
+    <div class="w-5 h-5 animate-pulse bg-[#6756cc] rounded-full animate-bounce"></div>
+  </div>
 </div>

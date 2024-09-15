@@ -10,7 +10,6 @@ import {
   ApexTooltip as ApexTooltipOptions
 } from 'ng-apexcharts';
 
-// Dashboard Data Interface
 export interface DashboardData {
   userName?: string;
   totalEmployees: number;
@@ -42,37 +41,6 @@ export interface DashboardData {
   }[];
 }
 
-// Sample Dashboard Data
-export const sampleDashboardData: DashboardData = {
-  userName: 'Muhammad Hamza',
-  totalEmployees: 12,
-  activeEmployees: 10,
-  inactiveEmployees: 2,
-  membershipType: 'Standard',
-  totalCost: 35.88,
-  loggedEmployees: 8,
-  mostTimeLogged: { name: 'John Doe', hours: 5 },
-  leastTimeLogged: { name: 'Jane Doe', hours: 2 },
-  employees: [
-    { name: 'John Doe', avatar: 'https://placehold.co/27x27' },
-    { name: 'Jane Doe', avatar: 'https://placehold.co/27x27' },
-  ],
-  onLeave: [
-    { name: 'John Doe', avatar: 'https://placehold.co/27x27', leaveType: '🤒 Sick' },
-    { name: 'Jane Doe', avatar: 'https://placehold.co/27x27', leaveType: '🤒 Sick' },
-  ],
-  weeklyTimeLogs: [
-    { dayOfWeek: 'Mon', hoursWorked: 10 },
-    { dayOfWeek: 'Tue', hoursWorked: 5 },
-    { dayOfWeek: 'Wed', hoursWorked: 8 },
-    { dayOfWeek: 'Thu', hoursWorked: 8 },
-    { dayOfWeek: 'Fri', hoursWorked: 9 },
-    { dayOfWeek: 'Sat', hoursWorked: 2 },
-    { dayOfWeek: 'Sun', hoursWorked: 2 },
-  ],
-};
-
-// Chart Options Type
 export type ChartConfiguration = {
   series: ApexChartSeries;
   chart: ApexChartOptions;
@@ -84,7 +52,7 @@ export type ChartConfiguration = {
   tooltip: ApexTooltipOptions;
 };
 
-// Default Chart Configuration
+
 export const defaultChartConfig: ChartConfiguration = {
   series: [
     {
